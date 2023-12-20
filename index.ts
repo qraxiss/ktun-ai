@@ -1,4 +1,3 @@
-import { connection } from './database'
-import { app } from './api'
-
-export { connection, app }
+export { connection } from './database'
+export { app } from './api'
+export { client } from './logic/models/whatsapp/client'
