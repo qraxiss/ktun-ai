@@ -129,3 +129,6 @@ dist
 .vscode/*
 
 config.ts
+
+.wwebjs_auth
+.wwebjs_cache
