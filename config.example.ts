@@ -11,6 +11,7 @@ type configType = {
     SESSION_SECRET: string
     ENV: string
     GPT_API: string
+    GPT_SERVER_KEY: string
 }
 
 const configSchema = Joi.object({
@@ -20,7 +21,8 @@ const configSchema = Joi.object({
     MODULE_KEY: Joi.string().required(),
     SESSION_SECRET: Joi.string().required(),
     ENV: Joi.string().valid('development', 'production').required(),
-    GPT_API: Joi.string().required()
+    GPT_API: Joi.string().required(),
+    GPT_SERVER_KEY: Joi.string().required()
 })
 
 export const config: configType = validate(
@@ -31,7 +33,8 @@ export const config: configType = validate(
         MODULE_NAME: name,
         SESSION_SECRET: '123',
         ENV: 'development',
-        GPT_API: 'http://127.0.0.1:8001'
+        GPT_API: 'http://127.0.0.1:8001',
+        GPT_SERVER_KEY: name
     },
     configSchema
 )

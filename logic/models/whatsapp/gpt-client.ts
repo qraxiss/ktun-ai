@@ -7,12 +7,20 @@ export const gptClient = axios.create({
 })
 
 export async function sendMessage(message: string) {
-    let res = await gptClient.post('/openai/continueCompletion?systemKey=ozteknik', {
-        message: {
-            content: message,
-            role: 'user'
+    let res = await gptClient.post(
+        `/openai/continueCompletion`,
+        {
+            message: {
+                content: message,
+                role: 'user'
+            }
+        },
+        {
+            params: {
+                systemKey: config.GPT_SERVER_KEY
+            }
         }
-    })
+    )
 
     return res.data
 }
