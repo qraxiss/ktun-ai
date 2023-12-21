@@ -1,7 +1,7 @@
 import qrcode from 'qrcode-terminal'
 import { Client, LocalAuth } from 'whatsapp-web.js'
 
-import { sendMessage } from './gpt-client'
+import { Gpt } from './gpt-client'
 
 export const client = new Client({
     authStrategy: new LocalAuth({ clientId: 'client-one' })
@@ -17,8 +17,13 @@ client.on('ready', () => {
 
 client.on('message', async (message) => {
     if (message.from) {
-        let aiMessage: string = (await sendMessage(message.body)).result.message.content
-        message.reply(aiMessage)
+        try {
+            let data = await Gpt.sendMessage(message.body)
+            let aiMessage: string = data.result.message.content
+            message.reply(aiMessage)
+        } catch (error) {
+            console.log(error)
+        }
     }
 })
 
