@@ -16,7 +16,7 @@ client.on('ready', () => {
 })
 
 client.on('message', async (message) => {
-    if (message.from) {
+    if (message.from && message.body.slice(0, 5) === '/ask ') {
         try {
             let data = await Gpt.sendMessage(message.body)
             let aiMessage: string = data.result.message.content
